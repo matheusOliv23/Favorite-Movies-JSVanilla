@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Filmes Favoritos</title>
+    <link rel="stylesheet" href="assets/styles/app.css" />
+    <script src="assets/scripts/app.js" defer></script>
+</head>
+
+<body>
+    <div id="backdrop"></div>
+    <div class="modal" id="add-modal">
+        <div class="modal__content">
+            <label for="title">Nome do Filme</label>
+            <input type="text" name="title" id="title" />
+            <label for="image-url">Image URL</label>
+            <input type="text" name="image-url" id="image-url" />
+            <label for="rating">Avaliação</label>
+            <input type="number" step="1" max="5" min="1" name="rating" id="rating" />
+        </div>
+        <div class="modal__actions">
+            <button class="btn btn--passive">Cancelar</button>
+            <button class="btn btn--success">Add</button>
+        </div>
+    </div>
+    <div class="modal" id="delete-modal">
+        <h2 class="modal__title">Tem certeza?</h2>
+        <p class="modal__content">
+            Quer mesmo deletar esse item da lista? Essa ação não pode ser desfeita.
+        </p>
+        <div class="modal__actions">
+            <button class="btn btn--passive">Não (Cancelar)</button>
+            <button class="btn btn--danger">Sim</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>Filmes Favoritos</h1>
+        <button>ADD FILME</button>
+    </header>
+
+    <main>
+        <section id="entry-text" class="card">
+            <p>Sua lista de filmes preferidos</p>
+        </section>
+        <ul id="movie-list"></ul>
+    </main>
+</body>
+
+</html>
