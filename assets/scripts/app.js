@@ -40,7 +40,6 @@ function toggleBackdrop() {
     backdrop.classList.toggle('visible')
 }
 
-
 function closeMovieModal() {
     toggleBackdrop()
     addMovieModal.classList.remove('visible')
@@ -51,6 +50,11 @@ const deleteMoveHandler = (movieId) => {
     toggleBackdrop()
     const cancelDeletionButton = deleteMovieModal.querySelector('.btn--passive')
     const confirmDeletionButton = deleteMovieModal.querySelector('.btn--danger')
+
+    confirmDeletionButton.replaceWith(confirmDeletionButton.cloneNode(true))
+
+    confirmDeletionButton.removeEventListener('click', deleteMovie.bind(null, movieId))
+        //cancelDeletionButton.removeEventListener('click', cancelMovieDeletion)
 
     cancelDeletionButton.addEventListener('click', cancelMovieDeletion)
     confirmDeletionButton.addEventListener('click', deleteMovie.bind(null, movieId))
