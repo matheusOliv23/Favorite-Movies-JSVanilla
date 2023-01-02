@@ -17,7 +17,7 @@ const updateUi = () => {
     }
 }
 
-const deleteMovie = () => {
+const deleteMovie = (movieId) => {
     let movieIndex = 0
     for (const movie of movies) {
         if (movie.id === movieId) {
@@ -28,6 +28,7 @@ const deleteMovie = () => {
     movies.splice(movieIndex, 1)
     const listRoot = document.getElementById('movie-list')
     listRoot.children[movieIndex].remove()
+    closeMovieModal()
 }
 
 const cancelMovieDeletion = () => {
@@ -35,14 +36,24 @@ const cancelMovieDeletion = () => {
     deleteMovieModal.classList.remove('visible')
 }
 
-const toggleBackdrop = () => {
+function toggleBackdrop() {
     backdrop.classList.toggle('visible')
+}
+
+
+function closeMovieModal() {
+    toggleBackdrop()
+    addMovieModal.classList.remove('visible')
 }
 
 const deleteMoveHandler = (movieId) => {
     deleteMovieModal.classList.add('visible')
-    deleteMovie(movieId)
     toggleBackdrop()
+    const cancelDeletionButton = deleteMovieModal.querySelector('.btn--passive')
+    const confirmDeletionButton = deleteMovieModal.querySelector('.btn--danger')
+
+    cancelDeletionButton.addEventListener('click', cancelMovieDeletion)
+    confirmDeletionButton.addEventListener('click', deleteMovie.bind(null, movieId))
 }
 
 
@@ -69,12 +80,9 @@ const clearMovieInput = () => {
     }
 }
 
-const closeMovieModal = () => {
-    addMovieModal.classList.remove('visible')
-}
-
 const cancelAddMovie = () => {
     closeMovieModal()
+    toggleBackdrop()
     clearMovieInput()
 }
 
